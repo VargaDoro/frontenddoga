@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router';
+import './App.css'
+import Kezdolap from './pages/Kezdolap';
+import Layout from './pages/Layout';
+import SzoProvider from "./contexts/SzavakContexts";
+import SzavakComponent from './components/SzavakComponent';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+     
+    children: [
+      {
+        index: true,
+        element: <Navigate to="/kezdolap" replace />,
+      },
+      {
+        path: "kezdolap",
+        element: <SzavakComponent />,
+      },
+    ],
+  },
+]);
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <SzoProvider>
+        <RouterProvider router={router} />
+      </SzoProvider>
   );
 }
 
