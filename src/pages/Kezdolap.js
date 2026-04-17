@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
-import SzavakComtonent from "../components/SzavakComponent";
-import SzavakContext from "../contexts/SzavakContexts";
+import React from "react";
+import SzavakComponent from "../components/SzavakComponent";
 
 export default function Kezdolap() {
-  const { szavakLista } = useContext(SzavakContext);
-  
   return (
     <div>
-      <SzavakComtonent />
+      <SzavakComponent />
     </div>
   );
 }

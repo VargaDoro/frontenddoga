@@ -8,18 +8,19 @@ export default function SzoProvider({children}){
     const [szavakLista, setSzavakLista] = useState([]);
 
     function getSzavak() {
-    axios
-      .get("http://127.0.0.1:8000/api/szavak")
-      .then(function (response) {
-        setSzavakLista(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
-      });
+      setLoading(true);
+
+      axios
+        .get("http://127.0.0.1:8000/api/szavak")
+        .then(function (response) {
+          setSzavakLista(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .finally(function () {
+          setLoading(false); // ❗ EZ HIÁNYZOTT
+        });
     }
 
     useEffect(() => {
